@@ -1,16 +1,38 @@
-# This is a sample Python script.
+from docx import Document
+from docxcompose.composer import Composer
+import argparse
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+parser = argparse.ArgumentParser()
+parser.add_argument("--files", type=str, nargs='+',
+                    help="input files")
+parser.add_argument("--dst", type=str,
+                    help="output files")
+args = parser.parse_args()
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+def combined(files: list, dst: str):
+    result = Document(files[0])
+    result.add_page_break()
+    composer = Composer(result)
+
+    for i in range(1, len(files)):
+        doc = Document(files[i])
+
+        if i != len(files) - 1:
+            doc.add_page_break()
+
+        composer.append(doc)
+
+    composer.save(dst)
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+def main() -> None:
+    try:
+        combined(files=args.files, dst=args.dst)
+        print("completely")
+    except Exception as error:
+        print(error)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+if __name__ == "__main__":
+    main()
