@@ -63,7 +63,7 @@ def save_file_as():
         )
     )
 
-    save_label['text'] = f"{filename}.docx"
+    save_label['text'] = f"{filename}"
 
 
 def combine():
@@ -71,9 +71,9 @@ def combine():
         combine_label['text'] = f"Please give more than one docxes."
         return
     stringvars = [StringVar.get() for StringVar in StringVars]
-    print(stringvars)
     if save_label['text'] and stringvars:
         combined(files=stringvars, dst=save_label['text'])
+        combine_label['text'] = f"Success."
         return
     else:
         combine_label['text'] = f"Please give the saving path."
