@@ -4,7 +4,10 @@
     python-docx==0.8.11
     docxcompose==1.3.0
     argparse==1.4.0
+    pip install pywin32==302
 ## command
 ```bash
-python main.py --files test1.docx test2.docx test3.docx --dst combined.docx
+python combine.py --files test1.docx test2.docx test3.docx --dst combined.docx
 ```
+## GUI
+![image info](./GUI1.png)
