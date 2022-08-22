@@ -10,4 +10,5 @@
 python combine.py --files test1.docx test2.docx test3.docx --dst combined.docx
 ```
 ## GUI
+### python main.py
 ![image info](./GUI1.png)
